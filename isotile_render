@@ -1,0 +1,316 @@
+import bpy
+from os.path import join
+
+t = bpy.data.objects
+tiles = bpy.data.collections['tiles']
+render_folder = "D:/Blender Output/"
+S = bpy.context.scene
+
+def tile_reset(col):
+    for tile in col.objects:
+        tile.location.x = 10
+        tile.location.y = 10
+    return
+
+def tile_home(tl):
+    tl['n'].location.x = 10
+    tl['n'].location.y = 14
+    tl['s'].location.x = 14
+    tl['s'].location.y = 10
+    tl['e'].location.x = 14
+    tl['e'].location.y = 14
+    tl['w'].location.x = 10
+    tl['w'].location.y = 10
+    tl['nw1'].location.x = 10
+    tl['nw1'].location.y = 12
+    tl['ne1'].location.x = 12
+    tl['ne1'].location.y = 14
+    tl['sw1'].location.x = 12
+    tl['sw1'].location.y = 10
+    tl['se1'].location.x = 14
+    tl['se1'].location.y = 12
+    tl['nw2'].location.x = 8
+    tl['nw2'].location.y = 12
+    tl['ne2'].location.x = 12
+    tl['ne2'].location.y = 16
+    tl['sw2'].location.x = 12
+    tl['sw2'].location.y = 8
+    tl['se2'].location.x = 16
+    tl['se2'].location.y = 12
+    tl['cn'].location.x = 20
+    tl['cn'].location.y = 18
+    tl['cs'].location.x = 22
+    tl['cs'].location.y = 16
+    tl['cw'].location.x = 20
+    tl['cw'].location.y = 16
+    tl['ce'].location.x = 22
+    tl['ce'].location.y = 18
+    tl['mn'].location.x = 20
+    tl['mn'].location.y = 6
+    tl['ms'].location.x = 22
+    tl['ms'].location.y = 4
+    tl['me'].location.x = 22
+    tl['me'].location.y = 6
+    tl['mw'].location.x = 20
+    tl['mw'].location.y = 4
+    return
+    
+def tile_move(n, s, e, w):
+    #north
+    n.location.x = -2
+    n.location.y =  2
+    #south
+    s.location.x =  0
+    s.location.y =  0
+    #east
+    e.location.x =  0
+    e.location.y =  2
+    #west
+    w.location.x = -2
+    w.location.y =  0
+    return
+
+def tile_render(i):
+    index     = str(i).zfill(3)
+    file_name = "isotile_{f}".format(f = index)
+    file_name += S.render.file_extension
+    bpy.context.scene.render.filepath = join(render_folder, file_name)
+    bpy.ops.render.render(write_still = True)
+    return
+
+#index_1
+tile_move(t['cn'], t['ms'], t['me'], t['mw'])
+tile_render(1)
+tile_reset(tiles)
+
+#index_2
+tile_move(t['mn'], t['ms'], t['ce'], t['mw'])
+tile_render(2)
+tile_reset(tiles)
+
+#index_3
+tile_move(t['cn'], t['ms'], t['ce'], t['mw'])
+tile_render(3)
+tile_reset(tiles)
+
+#index_4
+tile_move(t['mn'], t['cs'], t['me'], t['mw'])
+tile_render(4)
+tile_reset(tiles)
+
+#index_5
+tile_move(t['cn'], t['cs'], t['me'], t['mw'])
+tile_render(5)
+tile_reset(tiles)
+
+#index_6
+tile_move(t['mn'], t['cs'], t['ce'], t['mw'])
+tile_render(6)
+tile_reset(tiles)
+
+#index_7
+tile_move(t['cn'], t['cs'], t['ce'], t['mw'])
+tile_render(7)
+tile_reset(tiles)
+
+#index_8
+tile_move(t['mn'], t['ms'], t['me'], t['cw'])
+tile_render(8)
+tile_reset(tiles)
+
+#index_9
+tile_move(t['cn'], t['ms'], t['me'], t['cw'])
+tile_render(9)
+tile_reset(tiles)
+
+#index_10
+tile_move(t['mn'], t['ms'], t['ce'], t['cw'])
+tile_render(10)
+tile_reset(tiles)
+
+#index_11
+tile_move(t['cn'], t['ms'], t['ce'], t['cw'])
+tile_render(11)
+tile_reset(tiles)
+
+#index_12
+tile_move(t['mn'], t['cs'], t['me'], t['cw'])
+tile_render(12)
+tile_reset(tiles)
+
+#index_13
+tile_move(t['cn'], t['cs'], t['me'], t['cw'])
+tile_render(13)
+tile_reset(tiles)
+
+#index_14
+tile_move(t['mn'], t['cs'], t['ce'], t['cw'])
+tile_render(14)
+tile_reset(tiles)
+
+#index_15
+tile_move(t['cn'], t['cs'], t['ce'], t['cw'])
+tile_render(15)
+tile_reset(tiles)
+
+#index_16
+tile_move(t['nw1'], t['ms'], t['me'], t['nw2'])
+tile_render(16)
+tile_reset(tiles)
+
+#index_17
+tile_move(t['nw1'], t['ms'], t['ce'], t['nw2'])
+tile_render(17)
+tile_reset(tiles)
+
+#index_18
+tile_move(t['nw1'], t['cs'], t['me'], t['nw2'])
+tile_render(18)
+tile_reset(tiles)
+
+#index_19
+tile_move(t['nw1'], t['cs'], t['ce'], t['nw2'])
+tile_render(19)
+tile_reset(tiles)
+
+#index_20
+tile_move(t['ne1'], t['ms'], t['ne2'], t['mw'])
+tile_render(20)
+tile_reset(tiles)
+
+#index_21
+tile_move(t['ne1'], t['cs'], t['ne2'], t['mw'])
+tile_render(21)
+tile_reset(tiles)
+
+#index_22
+tile_move(t['ne1'], t['ms'], t['ne2'], t['cw'])
+tile_render(22)
+tile_reset(tiles)
+
+#index_23
+tile_move(t['ne1'], t['cs'], t['ne2'], t['cw'])
+tile_render(23)
+tile_reset(tiles)
+
+#index_24
+tile_move(t['mn'], t['se1'], t['se2'], t['mw'])
+tile_render(24)
+tile_reset(tiles)
+
+#index_25
+tile_move(t['mn'], t['se1'], t['se2'], t['cw'])
+tile_render(25)
+tile_reset(tiles)
+
+#index_26
+tile_move(t['cn'], t['se1'], t['se2'], t['mw'])
+tile_render(26)
+tile_reset(tiles)
+
+#index_27
+tile_move(t['cn'], t['se1'], t['se2'], t['cw'])
+tile_render(27)
+tile_reset(tiles)
+
+#index_28
+tile_move(t['mn'], t['sw1'], t['me'], t['sw2'])
+tile_render(28)
+tile_reset(tiles)
+
+#index_29
+tile_move(t['cn'], t['sw1'], t['me'], t['sw2'])
+tile_render(29)
+tile_reset(tiles)
+
+#index_30
+tile_move(t['mn'], t['sw1'], t['ce'], t['sw2'])
+tile_render(30)
+tile_reset(tiles)
+
+#index_31
+tile_move(t['cn'], t['sw1'], t['ce'], t['sw2'])
+tile_render(31)
+tile_reset(tiles)
+
+#index_32
+tile_move(t['nw1'], t['se1'], t['se2'], t['nw2'])
+tile_render(32)
+tile_reset(tiles)
+
+#index_33
+tile_move(t['ne1'], t['sw1'], t['ne2'], t['sw2'])
+tile_render(33)
+tile_reset(tiles)
+
+#index_34
+tile_move(t['n'], t['ms'], t['ne2'], t['nw1'])
+tile_render(34)
+tile_reset(tiles)
+
+#index_35
+tile_move(t['n'], t['cs'], t['ne2'], t['nw1'])
+tile_render(35)
+tile_reset(tiles)
+
+#index_36
+tile_move(t['ne1'], t['se1'], t['e'], t['mw'])
+tile_render(36)
+tile_reset(tiles)
+
+#index_37
+tile_move(t['ne1'], t['se1'], t['e'], t['cw'])
+tile_render(37)
+tile_reset(tiles)
+
+#index_38
+tile_move(t['mn'], t['s'], t['se1'], t['sw1'])
+tile_render(38)
+tile_reset(tiles)
+
+#index_39
+tile_move(t['cn'], t['s'], t['se1'], t['sw1'])
+tile_render(39)
+tile_reset(tiles)
+
+#index_40
+tile_move(t['nw1'], t['sw1'], t['me'], t['w'])
+tile_render(40)
+tile_reset(tiles)
+
+#index_41
+tile_move(t['nw1'], t['sw1'], t['ce'], t['w'])
+tile_render(41)
+tile_reset(tiles)
+
+#index_42
+tile_move(t['n'], t['se1'], t['e'], t['nw1'])
+tile_render(42)
+tile_reset(tiles)
+
+#index_43
+tile_move(t['n'], t['sw1'], t['ne1'], t['w'])
+tile_render(43)
+tile_reset(tiles)
+
+#index_44
+tile_move(t['nw1'], t['s'], t['se1'], t['w'])
+tile_render(44)
+tile_reset(tiles)
+
+#index_45
+tile_move(t['ne1'], t['s'], t['e'], t['sw1'])
+tile_render(45)
+tile_reset(tiles)
+
+#index_46
+tile_move(t['n'], t['s'], t['e'], t['w'])
+tile_render(46)
+tile_reset(tiles)
+
+#index_47
+tile_move(t['mn'], t['ms'], t['me'], t['mw'])
+tile_render(47)
+tile_reset(tiles)
+
+tile_home(t)
